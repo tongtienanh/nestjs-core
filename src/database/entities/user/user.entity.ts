@@ -20,7 +20,6 @@ export class User extends CoreBaseEntity{
     @BeforeInsert()
     @BeforeUpdate()
     async hashPassword() {
-        console.log(this, 'aaaaaaaaaa')
        if (this.password) {
         this.password = await bcrypt.hash(this.password, 11)
        }
