@@ -2,25 +2,21 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './modules/users/users.module';
-
+import { typeormAsyncConfig } from 'src/config/typeorm.config';
+import { ConfigModule } from '@nestjs/config';
+import {APP_FILTER} from "@nestjs/core";
+import {AllExceptionFilter} from "./common/filter/exceptions.filter";
+import {UsersModule} from "./modules/users/users.module";
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 6034,
-      username: 'root',
-      password: '123456',
-      database: 'my-app',
-      entities: [],
-      synchronize: true,
-      logging: true,
-      migrations: ["src/databases/migrations/**/*{.ts,.js}"],
-    }),
-    UsersModule, 
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync(typeormAsyncConfig),
+    UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_FILTER,
+    useClass: AllExceptionFilter
+  },],
 })
 export class AppModule {}

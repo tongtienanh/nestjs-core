@@ -1,6 +1,7 @@
 import {Entity, Column, BeforeInsert, BeforeUpdate} from 'typeorm'
-import { CoreBaseEntity } from './core/base.entity';
+import { CoreBaseEntity } from '../core/base.entity';
 import * as bcrypt from 'bcrypt'
+import 'dotenv/config'
 
 @Entity('users')
 export class User extends CoreBaseEntity{
@@ -20,7 +21,7 @@ export class User extends CoreBaseEntity{
     @BeforeUpdate()
     async hashPassword() {
        if (this.password) {
-        this.password = await bcrypt.hash(this.password, process.env.SALT_ROUNDS)
-       } 
+        this.password = await bcrypt.hash(this.password, 11)
+       }
     }
 }
