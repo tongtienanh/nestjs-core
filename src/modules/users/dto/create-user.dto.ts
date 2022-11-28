@@ -8,8 +8,7 @@ export class CreateUserDto {
     @IsNotEmpty()
     password: string;
 
-    @IsNotEmpty()
-    confirmPassword: string;
+    confirmPassword?: string;
 
     age?: number;
 

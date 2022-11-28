@@ -8,7 +8,7 @@ export class User extends CoreBaseEntity{
     @Column()
     username: string;
 
-    @Column({select: false})
+    @Column()
     password: string;
 
     @Column({nullable: true})

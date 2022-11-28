@@ -3,8 +3,9 @@ import {UsersImplService} from './users-impl.service';
 import {CreateUserDto} from './dto/create-user.dto';
 import {UpdateUserDto} from './dto/update-user.dto';
 import {ResponseEntity} from "../../common/resources/base/response.entity";
+import { Permission } from '../auth/decorators/permisson.decorator';
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController {
     constructor(private readonly usersService: UsersImplService) {
     }
@@ -16,6 +17,7 @@ export class UsersController {
     }
 
     @Get()
+    @Permission()
     findAll() {
         return this.usersService.findAll();
     }

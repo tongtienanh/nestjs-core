@@ -7,13 +7,15 @@ import { ConfigModule } from '@nestjs/config';
 import {APP_FILTER} from "@nestjs/core";
 import {AllExceptionFilter} from "./common/filter/exceptions.filter";
 import {UsersModule} from "./modules/users/users.module";
+import { AuthModule } from './modules/auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync(typeormAsyncConfig),
     UsersModule,
+    AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [AppService, {
     provide: APP_FILTER,
     useClass: AllExceptionFilter
