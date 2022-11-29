@@ -1,4 +1,4 @@
-import {BaseEntity, PrimaryGeneratedColumn, DeleteDateColumn, UpdateDateColumn, CreateDateColumn} from 'typeorm'
+import {BaseEntity, PrimaryGeneratedColumn, DeleteDateColumn, UpdateDateColumn, CreateDateColumn, Column} from 'typeorm'
 export abstract class CoreBaseEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
@@ -11,4 +11,10 @@ export abstract class CoreBaseEntity extends BaseEntity {
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @Column({name: "createdBy"})
+    createdBy?: number;
+
+    @Column()
+    updatedBy?: number;
 }

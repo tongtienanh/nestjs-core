@@ -2,18 +2,18 @@ import {Controller, Get, Post, Body, Patch, Param, Delete} from '@nestjs/common'
 import {UsersImplService} from './users-impl.service';
 import {CreateUserDto} from './dto/create-user.dto';
 import {UpdateUserDto} from './dto/update-user.dto';
-import {ResponseEntity} from "../../common/resources/base/response.entity";
 import { Permission } from '../auth/decorators/permisson.decorator';
+import { ResponseEntity } from 'src/common/resources/base/response.entity';
 
 @Controller('api/users')
 export class UsersController {
-    constructor(private readonly usersService: UsersImplService) {
-    }
+    constructor(private readonly usersService: UsersImplService) {}
 
     @Post()
-    async create(@Body() body: CreateUserDto): Promise<boolean> {
+    async create(@Body() body: CreateUserDto): Promise<ResponseEntity<boolean>> {
         await this.usersService.create(body);
-        return true
+        
+        return new ResponseEntity<boolean>(true)
     }
 
     @Get()

@@ -1,7 +1,11 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import {User} from "../database/entities/user/user.entity";
+import {
+  TypeOrmModuleAsyncOptions,
+  TypeOrmModuleOptions,
+} from '@nestjs/typeorm';
+import { User, UserRole, RolePermission, Role } from '../database/entities';
 import 'dotenv/config';
+
 export const typeormAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
   inject: [ConfigService],
@@ -13,14 +17,12 @@ export const typeormAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: process.env.DB_USER_NAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [
-          User
-      ],
+      entities: [User, UserRole, RolePermission, Role],
       synchronize: false,
       logging: true,
       migrations: ['dist/databases/migrations/**/*{.ts,.js}'],
       cli: {
-        migrationsDir: "src/databases/migrations"
+        migrationsDir: 'src/databases/migrations',
       },
       extra: {
         charset: 'utf8mb4_unicode_ci',
@@ -31,19 +33,19 @@ export const typeormAsyncConfig: TypeOrmModuleAsyncOptions = {
 
 export const typeOrmConfig = {
   type: 'mysql',
-      host: 'localhost',
-      port: process.env.DB_PORT,
-      username: process.env.DB_USER_NAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      synchronize: false,
-      logging: true,
-      migrations: ['dist/databases/migrations/**/*{.ts,.js}'],
-      cli: {
-        migrationsDir: "src/databases/migrations"
-      },
-      extra: {
-        charset: 'utf8mb4_unicode_ci',
-      },
+  host: 'localhost',
+  port: process.env.DB_PORT,
+  username: process.env.DB_USER_NAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  synchronize: false,
+  logging: true,
+  migrations: ['dist/databases/migrations/**/*{.ts,.js}'],
+  cli: {
+    migrationsDir: 'src/databases/migrations',
+  },
+  extra: {
+    charset: 'utf8mb4_unicode_ci',
+  },
 };

@@ -18,6 +18,7 @@ export class AllExceptionFilter implements ExceptionFilter {
             statusCode: httpStatus,
             timestamp: new Date().toISOString(),
             path: httpAdapter.getRequestUrl(ctx.getRequest()),
+            message: exception?.response?.message ?? exception?.sqlMessage ?? 'Internal server error'
         };
 
         httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);

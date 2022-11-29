@@ -1,11 +1,12 @@
-import {Entity, Column, BeforeInsert, BeforeUpdate} from 'typeorm'
+import {Entity, Column, BeforeInsert, BeforeUpdate, OneToMany, Unique} from 'typeorm'
 import { CoreBaseEntity } from '../core/base.entity';
 import * as bcrypt from 'bcrypt'
 import 'dotenv/config'
+import { UserRole } from '../role/user-role.entity';
 
 @Entity('users')
 export class User extends CoreBaseEntity{
-    @Column()
+    @Column({unique: true})
     username: string;
 
     @Column()
@@ -16,6 +17,9 @@ export class User extends CoreBaseEntity{
 
     @Column({nullable: true})
     gender: number;
+
+    @OneToMany(() => UserRole, (userRole) => userRole.user)
+    userRole: UserRole[];
 
     @BeforeInsert()
     @BeforeUpdate()

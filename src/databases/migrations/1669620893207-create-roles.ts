@@ -1,11 +1,11 @@
-import { DatabaseUtils } from "src/common/utils/database.utils";
 import {MigrationInterface, QueryRunner, Table, TableColumn} from "typeorm";
+import { DatabaseUtils } from 'src/common/utils/database.utils';
 
-export class createUser1663902046490 implements MigrationInterface {
+export class createRoles1669620893207 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "users",
+            name: "roles",
             columns: [
                 new TableColumn({
                     name: 'id',
@@ -16,25 +16,15 @@ export class createUser1663902046490 implements MigrationInterface {
                     isNullable: false
                 }),
                 new TableColumn({
-                    name: 'username',
+                    name: 'name',
                     type: 'varchar',
                     isNullable: false
                 }),
                 new TableColumn({
-                    name: 'password',
+                    name: 'description',
                     type: 'varchar',
                     isNullable: false
 
-                }),
-                new TableColumn({
-                    name: 'age',
-                    type: 'int',
-                    isNullable: true
-                }),
-                new TableColumn({
-                    name: 'gender',
-                    type: 'int',
-                    isNullable: true
                 }),
                 ...DatabaseUtils.getDefaultColumns()
             ]
@@ -42,7 +32,7 @@ export class createUser1663902046490 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('users')
+        await queryRunner.dropTable('roles')
     }
 
 }

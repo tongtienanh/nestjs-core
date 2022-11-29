@@ -1,24 +1,35 @@
-import { Module } from '@nestjs/common';
+import { CommandModule } from './commands/command.module';
+import { CommonModule } from './modules/common/common.module';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { typeormAsyncConfig } from 'src/config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
-import {APP_FILTER} from "@nestjs/core";
-import {AllExceptionFilter} from "./common/filter/exceptions.filter";
-import {UsersModule} from "./modules/users/users.module";
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { AllExceptionFilter } from './common/filter/exceptions.filter';
+import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 @Module({
   imports: [
+    CommandModule,
+    CommonModule,
+    CommonModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync(typeormAsyncConfig),
     UsersModule,
     AuthModule,
   ],
   controllers: [],
-  providers: [AppService, {
-    provide: APP_FILTER,
-    useClass: AllExceptionFilter
-  },],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionFilter,
+    },
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({ transform: true }),
+    },
+  ],
 })
 export class AppModule {}

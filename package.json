@@ -22,7 +22,8 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -f ./src/config/typeorm.config-migrations.ts",
     "migration:create": "npm run typeorm -- migration:create -n",
     "migration:up": "npm run typeorm -- migration:run",
-    "migration:down": "npm run typeorm -- migration:revert"
+    "migration:down": "npm run typeorm -- migration:revert",
+    "cli": "node dist/cli"
   },
   "dependencies": {
     "@nestjs/common": "^8.4.7",
@@ -40,6 +41,7 @@
     "class-validator": "^0.13.2",
     "dayjs": "^1.11.6",
     "mysql2": "^2.3.3",
+    "nest-commander": "^3.3.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
