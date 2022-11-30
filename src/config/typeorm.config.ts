@@ -3,7 +3,7 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
-import { User, UserRole, RolePermission, Role } from '../database/entities';
+import { User, UserRole, RolePermission, Role, Permission, ModulePermission } from '../database/entities';
 import 'dotenv/config';
 
 export const typeormAsyncConfig: TypeOrmModuleAsyncOptions = {
@@ -17,7 +17,7 @@ export const typeormAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: process.env.DB_USER_NAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, UserRole, RolePermission, Role],
+      entities: [User, UserRole, RolePermission, Role, Permission, ModulePermission],
       synchronize: false,
       logging: true,
       migrations: ['dist/databases/migrations/**/*{.ts,.js}'],

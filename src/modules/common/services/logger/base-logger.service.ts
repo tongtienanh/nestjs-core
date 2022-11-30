@@ -117,6 +117,6 @@ export class CoreLoggerService extends Logger {
     }
     if (!(color in config)) color = "cyan";
 
-    console.log("\x1b[33m", `${message}:`, config[color], message);
+    console.log("\x1b[33m", `${DateUtils.formatDate(new Date(), "DD/MM/YYYY HH:mm:ss")}:`, config[color], message);
   }
 }

@@ -21,15 +21,9 @@ export class createRolesPermission1669626626510 implements MigrationInterface {
                     isNullable: false
                 }),
                 new TableColumn({
-                    name: 'model',
-                    type: 'varchar',
+                    name: 'permission_id',
+                    type: 'int',
                     isNullable: false
-                }),
-                new TableColumn({
-                    name: 'action',
-                    type: 'varchar',
-                    isNullable: false
-
                 }),
                 ...DatabaseUtils.getDefaultColumns()
             ]
