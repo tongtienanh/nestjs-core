@@ -1,5 +1,5 @@
 export interface BaseFiler {
-    page?: number;
+  page?: number;
 
-    size?: number
+  size?: number;
 }

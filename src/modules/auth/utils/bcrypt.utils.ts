@@ -1,4 +1,4 @@
-import * as bcrypt from "bcrypt";
+import * as bcrypt from 'bcrypt';
 
 export class HashUtils {
   static async encrypt(value: string): Promise<string> {

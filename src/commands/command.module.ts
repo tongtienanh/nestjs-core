@@ -7,7 +7,12 @@ import { ModulePermission } from './../database/entities/role/module.entity';
 import { Permission } from './../database/entities/role/permission.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Role, RolePermission, ModulePermission, Permission]),
+    TypeOrmModule.forFeature([
+      Role,
+      RolePermission,
+      ModulePermission,
+      Permission,
+    ]),
   ],
   providers: [GenerateRolePermissionCommand],
 })

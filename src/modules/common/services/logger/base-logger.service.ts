@@ -39,8 +39,8 @@ export class CoreLoggerService extends Logger {
     return message;
   }
   simpleStringify(object): string {
-    var simpleObject = {};
-    for (var prop in object) {
+    const simpleObject = {};
+    for (const prop in object) {
       if (!object.hasOwnProperty(prop)) {
         continue;
       }
@@ -108,15 +108,20 @@ export class CoreLoggerService extends Logger {
     }
   }
 
-  color(message: any, color: string = 'red') {
+  color(message: any, color = 'red') {
     const config = {
-        "red": "\x1b[31m",
-        "cyan": "\x1b[36m%s\x1b[0m",
-        "green": "\x1b[32m",
-        "yellow": "\x1b[33m",
-    }
-    if (!(color in config)) color = "cyan";
+      red: '\x1b[31m',
+      cyan: '\x1b[36m%s\x1b[0m',
+      green: '\x1b[32m',
+      yellow: '\x1b[33m',
+    };
+    if (!(color in config)) color = 'cyan';
 
-    console.log("\x1b[33m", `${DateUtils.formatDate(new Date(), "DD/MM/YYYY HH:mm:ss")}:`, config[color], message);
+    console.log(
+      '\x1b[33m',
+      `${DateUtils.formatDate(new Date(), 'DD/MM/YYYY HH:mm:ss')}:`,
+      config[color],
+      message,
+    );
   }
 }
