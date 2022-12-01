@@ -34,7 +34,9 @@ export class GenerateRolePermissionCommand extends CommandRunner {
     const modules = ModuleConstant.setUp();
 
     for (const module of modules) {
-      let moduleEntity = await this.moduleRepository.findOneBy({name: module.name});
+      let moduleEntity = await this.moduleRepository.findOne({
+        where: {name: module.name}
+      });
       if (!moduleEntity) {
         const moduleEntity = new ModulePermission();
         moduleEntity.name = module.name;
@@ -46,7 +48,9 @@ export class GenerateRolePermissionCommand extends CommandRunner {
       }
       this.logger.color(moduleEntity)
       for (const permission of module.permissions) {
-        const isExistPermission = await this.permissionRepository.findOneBy({name: permission.name});
+        const isExistPermission = await this.permissionRepository.findOne({
+          where: {name: permission.name}
+        });
         if (!isExistPermission) {
           const permissionEntity = new Permission();
           permissionEntity.name = permission.name;

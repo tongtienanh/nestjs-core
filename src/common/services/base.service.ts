@@ -11,6 +11,21 @@ export abstract class BaseService<T extends BaseEntity, R extends Repository<T>>
         this.repository = repository;
     }
 
+    async findById(id: EntityId): Promise<T> {
+        return await this.repository.findOne(id)
+    }
+    findByIds(id: [EntityId]): Promise<T[]> {
+        return this.repository.findByIds(id)
+    }
+    store(data: any): Promise<T> {
+        return this.repository.save(data)
+    }
+    update(id: EntityId, data: any): Promise<UpdateResult> {
+        return this.repository.update(id, data)
+    }
+    delete(id: EntityId): Promise<DeleteResult> {
+        return this.repository.delete(id)
+    }
     async findAndPagination(filter?: FindManyOptions<T>, pageAble?: BaseFiler) {
         const { page, size } = pageAble;
         const skip = (page - 1) * size;

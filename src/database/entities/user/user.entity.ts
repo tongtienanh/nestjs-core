@@ -1,8 +1,9 @@
-import {Entity, Column, BeforeInsert, BeforeUpdate, OneToMany, Unique} from 'typeorm'
+import {Entity, Column, BeforeInsert, BeforeUpdate, OneToMany, Unique, JoinColumn, OneToOne} from 'typeorm'
 import { CoreBaseEntity } from '../core/base.entity';
 import * as bcrypt from 'bcrypt'
 import 'dotenv/config'
 import { UserRole } from '../role/user-role.entity';
+import {LocalFile} from "../local-file/localFile.entity";
 
 @Entity('users')
 export class User extends CoreBaseEntity{
@@ -20,6 +21,18 @@ export class User extends CoreBaseEntity{
 
     @OneToMany(() => UserRole, (userRole) => userRole.user)
     userRole: UserRole[];
+    @JoinColumn({ name: 'avatarId' })
+    @OneToOne(
+        () => LocalFile,
+        {
+            nullable: true
+        }
+    )
+    public avatar?: LocalFile;
+
+    @Column({ nullable: true })
+    public avatarId?: number;
+
 
     @BeforeInsert()
     @BeforeUpdate()

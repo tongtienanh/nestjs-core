@@ -4,3 +4,4 @@ export * from './role/user-role.entity';
 export * from './role/role-permissions.entity';
 export * from './role/permission.entity';
 export * from './role/module.entity';
+export * from './local-file/localFile.entity';

@@ -1,8 +1,8 @@
 import {Controller, Get, Post, Body, Patch, Param, Delete} from '@nestjs/common';
-import {UsersImplService} from './users-impl.service';
-import {CreateUserDto} from './dto/create-user.dto';
-import {UpdateUserDto} from './dto/update-user.dto';
-import { Permission } from '../auth/decorators/permisson.decorator';
+import {UsersImplService} from '../services/users-impl.service';
+import {CreateUserDto} from '../dto/create-user.dto';
+import {UpdateUserDto} from '../dto/update-user.dto';
+import { Permission } from '../../auth/decorators/permisson.decorator';
 import { ResponseEntity } from 'src/common/resources/base/response.entity';
 
 @Controller('api/users')
@@ -12,7 +12,7 @@ export class UsersController {
     @Post()
     async create(@Body() body: CreateUserDto): Promise<ResponseEntity<boolean>> {
         await this.usersService.create(body);
-        
+
         return new ResponseEntity<boolean>(true)
     }
 
