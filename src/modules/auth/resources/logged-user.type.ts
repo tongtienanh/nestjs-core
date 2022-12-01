@@ -1,4 +1,3 @@
-
 import { EAccountType } from 'src/modules/users/constants/user.enum';
 export interface ILoggedInUser {
   userId: number;

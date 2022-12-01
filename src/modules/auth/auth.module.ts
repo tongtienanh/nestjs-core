@@ -11,19 +11,20 @@ import { User } from 'src/database/entities/user/user.entity';
 
 @Module({
   imports: [
-PassportModule,
+    PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '1d' },
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [{
-    provide: AuthService,
-    useClass: AuthImplService,
-  },
-  JwtStrategy,
-],
+  providers: [
+    {
+      provide: AuthService,
+      useClass: AuthImplService,
+    },
+    JwtStrategy,
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}

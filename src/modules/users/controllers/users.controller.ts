@@ -4,17 +4,24 @@ import {CreateUserDto} from '../dto/create-user.dto';
 import {UpdateUserDto} from '../dto/update-user.dto';
 import { Permission } from '../../auth/decorators/permisson.decorator';
 import { ResponseEntity } from 'src/common/resources/base/response.entity';
+import {
+    ApiBearerAuth,
+    ApiOperation,
+    ApiResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 
 @Controller('api/users')
 export class UsersController {
     constructor(private readonly usersService: UsersImplService) {}
 
-    @Post()
-    async create(@Body() body: CreateUserDto): Promise<ResponseEntity<boolean>> {
-        await this.usersService.create(body);
+  @Post()
+  @ApiOperation({ summary: 'Create user' })
+  async create(@Body() body: CreateUserDto): Promise<ResponseEntity<boolean>> {
+    await this.usersService.create(body);
 
-        return new ResponseEntity<boolean>(true)
-    }
+    return new ResponseEntity<boolean>(true);
+  }
 
     @Get()
     @Permission()

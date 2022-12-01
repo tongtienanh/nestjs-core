@@ -45,7 +45,7 @@ export class UsersImplService {
   async setUserRoles(roleIds, userId): Promise<void> {
     const userRoles = [];
     for (const roleId of roleIds) {
-      const userRole = new UserRole()
+      const userRole = new UserRole();
       userRole.userId = userId;
       userRole.roleId = roleId;
       userRole.createdAt = new Date();
@@ -53,6 +53,6 @@ export class UsersImplService {
       userRoles.push(userRole);
     }
 
-    await this.userRoleRepository.insert(userRoles)
+    await this.userRoleRepository.insert(userRoles);
   }
 }
