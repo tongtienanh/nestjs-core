@@ -20,7 +20,8 @@ export class User extends CoreBaseEntity{
     gender: number;
 
     @OneToMany(() => UserRole, (userRole) => userRole.user)
-    userRole: UserRole[];
+    userRoles: UserRole[];
+
     @JoinColumn({ name: 'avatarId' })
     @OneToOne(
         () => LocalFile,
