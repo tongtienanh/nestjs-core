@@ -78,12 +78,12 @@ export class CoreLoggerService extends Logger {
   }
 
   /**
-   * Write a 'warn' level log.
+   * Write a.jpg 'warn' level log.
    */
   warn(message: any, ...optionalParams: any[]) {}
 
   /**
-   * Write a 'debug' level log.
+   * Write a.jpg 'debug' level log.
    */
   debug(message: any, ...optionalParams: any[]) {
     const params = this.parseMessage(message, ...optionalParams);
@@ -96,7 +96,7 @@ export class CoreLoggerService extends Logger {
   }
 
   /**
-   * Write a 'verbose' level log.
+   * Write a.jpg 'verbose' level log.
    */
   verbose(message: any, ...optionalParams: any[]) {}
 

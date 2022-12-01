@@ -30,14 +30,12 @@ export class GenerateRolePermissionCommand extends CommandRunner {
     await this.createPermission();
   }
   async createPermission(): Promise<void> {
-    this.logger.color(':::::START:::::');
+    this.logger.color(":::::START:::::");
     const modules = ModuleConstant.setUp();
 
     for (const module of modules) {
-      const moduleEntity = await this.moduleRepository.findOne({
-        where: {
-          name: module.name,
-        }
+      let moduleEntity = await this.moduleRepository.findOne({
+        where: {name: module.name}
       });
       if (!moduleEntity) {
         const moduleEntity = new ModulePermission();
@@ -48,12 +46,10 @@ export class GenerateRolePermissionCommand extends CommandRunner {
 
         await this.moduleRepository.save(moduleEntity);
       }
-      this.logger.color(moduleEntity);
+      this.logger.color(moduleEntity)
       for (const permission of module.permissions) {
         const isExistPermission = await this.permissionRepository.findOne({
-          where: {
-            name: permission.name
-          }
+          where: {name: permission.name}
         });
         if (!isExistPermission) {
           const permissionEntity = new Permission();
@@ -67,6 +63,6 @@ export class GenerateRolePermissionCommand extends CommandRunner {
         }
       }
     }
-    this.logger.color(':::::::END:::::::');
+    this.logger.color(":::::::END:::::::");
   }
 }
