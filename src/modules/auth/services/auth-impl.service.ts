@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { LoginRequest } from './../requests/login.request';
-import { Inject } from '@nestjs/common/decorators';
 import { User } from 'src/database/entities/user/user.entity';
 import { Repository } from 'typeorm';
 import { UnauthorizedException } from '@nestjs/common/exceptions';
@@ -22,11 +21,7 @@ export class AuthImplService implements AuthService {
         username: request.username,
       },
     });
-    if (!user)
-      throw new UnauthorizedException('Tài khoản hoặc mật khẩu chưa đúng.');
-
-    console.log(user, request);
-
+    if (!user) throw new UnauthorizedException('Tài khoản hoặc mật khẩu chưa đúng.');
     const validPassword = await HashUtils.compare(
       request.password,
       user.password,

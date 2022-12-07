@@ -19,21 +19,11 @@ export class User extends CoreBaseEntity{
     @Column({nullable: true})
     gender: number;
 
+    @Column({default: null})
+    avatarId: number
+
     @OneToMany(() => UserRole, (userRole) => userRole.user)
     userRoles: UserRole[];
-
-    @JoinColumn({ name: 'avatarId' })
-    @OneToOne(
-        () => LocalFile,
-        {
-            nullable: true
-        }
-    )
-    public avatar?: LocalFile;
-
-    @Column({ nullable: true })
-    public avatarId?: number;
-
 
     @BeforeInsert()
     @BeforeUpdate()

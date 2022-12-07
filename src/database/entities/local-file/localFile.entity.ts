@@ -1,5 +1,6 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, JoinColumn, OneToOne} from "typeorm";
 import {CoreBaseEntity} from "../core/base.entity";
+import {User} from "../user/user.entity";
 
 @Entity("avatar")
 export class LocalFile extends CoreBaseEntity {
@@ -11,4 +12,14 @@ export class LocalFile extends CoreBaseEntity {
 
     @Column()
     mimetype: string;
+
+    @JoinColumn({ name: 'id', referencedColumnName: "avatarId"})
+
+    @OneToOne(
+        () => User,
+        {
+            nullable: true
+        }
+    )
+    public user?: User;
 }

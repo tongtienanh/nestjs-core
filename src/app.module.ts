@@ -9,6 +9,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { AllExceptionFilter } from './common/filter/exceptions.filter';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import {AppController} from "./app.controller";
 @Module({
   imports: [
     CommandModule,
@@ -19,7 +20,7 @@ import { AuthModule } from './modules/auth/auth.module';
     UsersModule,
     AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [
     AppService,
     {

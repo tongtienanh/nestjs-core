@@ -12,8 +12,8 @@ services:
     ports:
       - "6034:3306"
     volumes:
-      - vh_erp_mysqldata:/var/lib/mysql
-      - ./db:/var/database
+      - .:/var/lib/mysql
+      - .:/var/database
     networks:
       - vh_erp_2022
 
@@ -31,28 +31,28 @@ services:
       - 8095:80
     networks:
       - vh_erp_2022
-  
+
   vh_erp_redis:
     image: redis
     container_name: vh_erp_redis
-    ports: 
+    ports:
       - 6382:6379
-    networks: 
+    networks:
       - vh_erp_2022
 
   vh_erp_mongodb:
     image: mongo:4.4
     container_name: vh_erp_mongodb
     restart: unless-stopped
-    ports: 
+    ports:
       - 27018:27017
-    networks: 
+    networks:
       - vh_erp_2022
 
 
-volumes:
-  vh_erp_mysqldata:
-    driver: local
+#volumes:
+#  vh_erp_mysqldata:
+#    driver: local
 
 networks:
   vh_erp_2022:

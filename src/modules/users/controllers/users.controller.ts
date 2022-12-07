@@ -4,12 +4,7 @@ import {CreateUserDto} from '../dto/create-user.dto';
 import {UpdateUserDto} from '../dto/update-user.dto';
 import { Permission } from '../../auth/decorators/permisson.decorator';
 import { ResponseEntity } from 'src/common/resources/base/response.entity';
-import {
-    ApiBearerAuth,
-    ApiOperation,
-    ApiResponse,
-    ApiTags,
-} from '@nestjs/swagger';
+import {ApiOperation} from '@nestjs/swagger';
 
 @Controller('api/users')
 export class UsersController {
