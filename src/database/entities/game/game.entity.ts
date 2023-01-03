@@ -1,5 +1,6 @@
 import {CoreBaseEntity} from "../core/base.entity";
-import {Column, Entity} from "typeorm";
+import {Column, Entity, OneToMany} from "typeorm";
+import {GameTag} from "./game-tag.entity";
 
 @Entity("game")
 export class Game extends CoreBaseEntity {
@@ -17,4 +18,7 @@ export class Game extends CoreBaseEntity {
 
     @Column()
     slug: string;
+
+    @OneToMany(() => GameTag, (gameTag) => gameTag.game)
+    gameTag: GameTag[];
 }

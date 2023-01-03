@@ -9,6 +9,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { AllExceptionFilter } from './common/filter/exceptions.filter';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import {GameModule} from "./modules/game/game.module";
 @Module({
   imports: [
     CommandModule,
@@ -18,6 +19,7 @@ import { AuthModule } from './modules/auth/auth.module';
     TypeOrmModule.forRootAsync(typeormAsyncConfig),
     UsersModule,
     AuthModule,
+    GameModule,
   ],
   controllers: [],
   providers: [

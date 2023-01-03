@@ -5,3 +5,6 @@ export * from './role/role-permissions.entity';
 export * from './role/permission.entity';
 export * from './role/module.entity';
 export * from './local-file/localFile.entity';
+export * from './game/game.entity';
+export * from './game/game-tag.entity';
+export * from './game/tag.entity';
